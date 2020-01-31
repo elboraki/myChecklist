@@ -3,11 +3,13 @@ class ItemsController < ApplicationController
     before_action :item_find , only: [:show,:update,:edit,:destroy]
 
     def index
-        @items=Item.all.order("created_at DESC")
+        if user_signed_in?
+            @items=Item.where(user_id: current_user.id).order("created_at DESC")
+        end
     end
 
     def new
-        @item=Item.new
+        @item=current_user.items.build
     end
 
     def show
@@ -30,12 +32,18 @@ class ItemsController < ApplicationController
     end
 
     def create
-        @item=Item.new(item_params)
+        @item=current_user.items.build(item_params)
         if @item.save
             redirect_to root_path
         else
             render 'new'
         end
+    end
+
+    def complete
+        @item=Item.find(params[:id])
+        @item.update_attribute(:completed_at,Time.now)
+        redirect_to root_path , notice: "The item is completed successfully"
     end
 
     private
