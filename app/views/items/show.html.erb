@@ -1,0 +1,11 @@
+<h2>
+    <%= @item.title %>
+</h2>
+<p>
+    <%= @item.description %>
+</p>
+
+<%= link_to 'edit' ,edit_item_path(@item) %>
+<%= link_to 'Delete', item_path(@item),method: :delete, data: {confirm: "are you sure"} %>
+
+<%= link_to 'back' , root_path %>
