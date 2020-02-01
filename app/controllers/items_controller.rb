@@ -1,6 +1,7 @@
 class ItemsController < ApplicationController
 
     before_action :item_find , only: [:show,:update,:edit,:destroy]
+    before_action :authenticate_user! , except: [:index]
 
     def index
         if user_signed_in?
