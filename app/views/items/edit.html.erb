@@ -1,3 +1,11 @@
-<h1>Edit Item</h1>
 
-<%= render 'form' %>
+
+<div class="panel panel-default">
+  <div class="panel-heading">Edit Item</div>
+  <div class="panel-body">
+        <%= render 'form' %>
+  </div>
+</div>
+<%= link_to  root_path ,class: "btn btn-primary" do %>
+     <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"> Back</span>
+<% end %>

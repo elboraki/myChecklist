@@ -1,11 +1,23 @@
-<h2>
-    <%= @item.title %>
-</h2>
-<p>
-    <%= @item.description %>
-</p>
 
-<%= link_to 'edit' ,edit_item_path(@item) %>
-<%= link_to 'Delete', item_path(@item),method: :delete, data: {confirm: "are you sure"} %>
+<div class="panel panel-default">
+  <div class="panel-heading">Details of Item </div>
+  <div class="panel-body">
+    <h2>
+        <%= @item.title %>
+    </h2>
+    <p>
+        <%= @item.description %>
+    </p>
+    <%= link_to  edit_item_path(@item) ,class: "btn btn-warning " do %>
+         <span class="glyphicon glyphicon-pencil" aria-hidden="true"> Edit</span>
+    <% end %>
+    <%= link_to  item_path(@item),method: :delete, data: {confirm: "are you sure"} ,class:"btn btn-danger" do %>
+          <span class="glyphicon glyphicon-trash" aria-hidden="true"> Delete</span>
+    <% end %>
+  </div>
+</div>
 
-<%= link_to 'back' , root_path %>
+
+<%= link_to  root_path ,class: "btn btn-primary" do %>
+     <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"> Back</span>
+<% end %>

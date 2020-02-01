@@ -3,33 +3,50 @@
 <div class="col-md-6 col-md-offset-3">
 
     <% @items.each do |item| %>
-    <% if item.completed %>
-        <h2 style="opacity: 0,5"><strike><%= link_to item.title , item_path(item) %></strike></h2>
-        <p>
-            <%= item.description %>
-        </p>
-        <span>
-        <%= time_ago_in_words(item.completed_at) %>
-        </span>
-            <%= link_to  complete_item_path(item) ,method: :patch,class: "btn btn-success" do %>
-            Completed <span class="glyphicon glyphicon-check" aria-hidden="true"></span>
-        <% end %>
-         <%= link_to  item_path(item) ,method: :delete ,data:{confirm: "Are you sure"} ,class: "btn btn-danger" do %>
-              Delete <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
-         <% end %>
-
-    <% else %>
-        <h2><%= link_to item.title , item_path(item) %></h2>
-        <p>
-            <%= item.description %>
-        </p>
+    <div class="row item">
+        <% if item.completed %>
+        
+        <div class="col-md-6">
+                <h2 style="opacity: 0,5"><strike><%= link_to item.title , item_path(item) %></strike></h2>
+            <p>
+                <%= item.description %>
+            </p>
+            <span>
+            Completed in <%= time_ago_in_words(item.completed_at) %>
+            </span>
+        </div>
+        <div class="col-md-2">
         <%= link_to  complete_item_path(item) ,method: :patch,class: "btn btn-success" do %>
-            Completed <span class="glyphicon glyphicon-check" aria-hidden="true"></span>
+                Completed <span class="glyphicon glyphicon-check" aria-hidden="true"></span>
+            <% end %>
+        </div>
+        <div class="col-md-2 col-md-offset-2">
+            <%= link_to  item_path(item) ,method: :delete ,data:{confirm: "Are you sure"} ,class: "btn btn-danger" do %>
+                Delete <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+            <% end %>
+        </div>
+
+        <% else %>
+        <div class="col-md-6">
+        <h2><%= link_to item.title , item_path(item) %></h2>
+            <p>
+                <%= item.description %>
+            </p>
+        </div>
+        <div class="col-md-2">
+            <%= link_to  complete_item_path(item) ,method: :patch,class: "btn btn-success" do %>
+                Completed <span class="glyphicon glyphicon-check" aria-hidden="true"></span>
+            <% end %>
+        </div>
+        <div class="col-md-2 col-md-offset-2">
+            <%= link_to  item_path(item) ,method: :delete ,data:{confirm: "Are you sure"} ,class: "btn btn-danger" do %>
+                Delete <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+            <% end %>
+        </div>
+        
+        
         <% end %>
-         <%= link_to  item_path(item) ,method: :delete ,data:{confirm: "Are you sure"} ,class: "btn btn-danger" do %>
-              Delete <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
-         <% end %>
-    <% end %>
+        </div>
     <% end %>
 </div>
 
